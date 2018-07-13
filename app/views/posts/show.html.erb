@@ -1,0 +1,39 @@
+<% if logged_in? && @post.creator.id == session[:user_id] %>
+  <p class="pull-right">
+    [<%= link_to("Edit Post", edit_post_path(@post)) %>]
+  </p>
+<% end %>
+<p>
+  <%= render @post.categories %>
+</p>
+<%= render 'shared/content_title', title: @post.title %>
+
+<p>
+  <%= @post.description %>
+</p>
+<hr></hr>
+
+<%= link_to 'go back to all posts', posts_path %>
+<br><br />
+<% if logged_in? %>
+  <%= render 'shared/errors', obj: @comment %>
+  <%= form_for [@post, @comment] do |f| %>
+    <%= f.label :body, 'Leave a Comment' %>
+    <%= f.text_area :body, rows: 3, class: 'span4' %>
+    <br />
+    <%= f.submit "Create Comment", class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+
+<div class="comments">
+  <h4>Comments</h4>
+  <% if @post.comments.empty? %>
+    <div class="well row span8">
+      <p>No comments yet</p>
+    </div>
+  <% else %>
+    <% @post.comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+    <% end %>
+  <% end %>
+</div>

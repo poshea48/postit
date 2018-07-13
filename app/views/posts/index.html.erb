@@ -1,0 +1,12 @@
+<%= render 'shared/content_title', title: 'All of THE Posts' %>
+<% @posts.each do |post| %>
+  <%= render 'post', post: post %>
+<% end %>
+
+
+
+<!-- <ul>
+  <% @posts.each do |post| %>
+  <li><%= link_to post.title, post_path(post) %></li>
+  <% end %>
+</ul> -->
