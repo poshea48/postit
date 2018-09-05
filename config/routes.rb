@@ -14,7 +14,7 @@ PostitTemplate::Application.routes.draw do
       member do
         post :vote
       end
-    end 
+    end
   end
 
   resources :categories, only: [:show, :create, :new]

@@ -1,0 +1,8 @@
+<% if @vote.valid? %>
+  $("#comment_<%= @comment.id %>_votes").html("<%= @comment.total_votes %> votes")
+<% else %>
+  alert("You can only vote once on a comment")
+  // let a = $("a").addClass("close").attr("data-dismiss", "alert").text("&#215;")
+  // let div = $("div").addClass("alert alert-error").append()
+  // $("#ajax_message")
+<% end %>

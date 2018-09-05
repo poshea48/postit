@@ -1,4 +1,4 @@
-<% if logged_in? && @post.creator.id == session[:user_id] %>
+<% if logged_in? && @post.creator.id == current_user.id %>
   <p class="pull-right">
     [<%= link_to("Edit Post", edit_post_path(@post)) %>]
   </p>

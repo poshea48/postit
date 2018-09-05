@@ -6,12 +6,18 @@
       <%= f.label :username %>
       <%= f.text_field :username %>
     </div>
-    <% if @user.new_record? %>
+    <!-- <% if @user.new_record? %> -->
       <div class="control-group">
         <%= f.label :password %>
         <%= f.password_field :password %>
       </div>
-    <% end %>
+    <!-- <% end %> -->
+
+    <div class="control-group">
+      <%= f.label :time_zone %>
+      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, default: Time.zone.name %>
+    </div>
+
     <%= f.submit(@user.new_record? ? 'Register' : 'Update Profile', class: 'btn btn-primary') %>
   <% end %>
 </div>

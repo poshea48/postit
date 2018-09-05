@@ -4,6 +4,9 @@ module ApplicationHelper
   end
 
   def display_datetime(dt)
+    if logged_in? && !current_user.time_zone.blank?
+      dt = dt.in_time_zone(current_user.time_zone)
+    end
     dt.strftime("%m/%d/%Y %l:%M%P %Z")
   end
 
@@ -18,6 +21,20 @@ module ApplicationHelper
   def number_of_negative_votes(obj)
     obj.votes.select {|vote| vote.vote == false}.size
   end
+
+  # def ajax_flash(div)
+  #   flash_div = ""
+  #   response = ""
+  #
+  #   flash.each do |name, msg|
+  #     if msg.is_a?(String)
+  #       flash_div = "<div class=\"alert alert-#{name == :notice ? "success" : "error"}">
+  #         <a class="close" data-dismiss="alert">&#215;</a>
+  #         <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  #       </div>
+  #     <% end %>
+  #   <% end %>
+  # end
 
 
 
